@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">PDF and Flight Booking Test Results</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Mar 09, 2026 12:09:50</span></a>
+<a href="#"><span class="badge badge-primary">Mar 09, 2026 20:01:40</span></a>
 </li>
 </ul>
 </div>
@@ -52,16 +52,6 @@
 <span class="ico"><i class="fa fa-list"></i></span>
 </a>
 </li>
-<li class="nav-item dropdown" onclick="toggleView('category-view')">
-<a id="nav-category" class="dropdown-toggle" href="#">
-<span class="ico"><i class="fa fa-tag"></i></span>
-</a>
-</li>
-<li class="nav-item dropdown" onclick="toggleView('exception-view')">
-<a id="nav-exception" class="dropdown-toggle" href="#">
-<span class="ico"><i class="fa fa-bug"></i></span>
-</a>
-</li>
 </ul>
 </div>
 </div>      <div class="vcontainer">
@@ -71,25 +61,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Mar 09, 2026 12:09:50</h3>
+<h3>Mar 09, 2026 20:01:40</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Mar 09, 2026 12:09:59</h3>
+<h3>Mar 09, 2026 20:02:11</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Features Passed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Features Failed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -105,12 +95,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'>
-<b>0</b> features passed
+<div><small data-tooltip='100%'>
+<b>1</b> features passed
 </small>
 </div>
 <div>
-<small data-tooltip='100%'><b>1</b> features failed,
+<small data-tooltip='0%'><b>0</b> features failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -128,9 +118,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'><b>0</b> scenarios passed</small></div>
+<div><small data-tooltip='100%'><b>1</b> scenarios passed</small></div>
 <div>
-<small data-tooltip='100%'><b>1</b> scenarios failed,
+<small data-tooltip='0%'><b>0</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -148,10 +138,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'><b>0</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>6</b> steps passed</small></div>
 <div>
-<small data-tooltip='28%'><b>2</b> steps failed,
-<b>5</b> skipped, <b data-tooltip='%'>0</b> others
+<small data-tooltip='0%'><b>0</b> steps failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
 </div>
@@ -167,27 +157,10 @@
 </div></div>
 <script>
 var timeline = {
-"Flight Booking on Ixigo":8.328
+"Flight Booking on Ixigo":30.291
 };
 </script>
 <div class="row">
-<div class="col-lg-6 col-md-12 category-container">
-<div class="card">
-<div class="card-header"><p>Tags</p></div>
-<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
-<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
-<tr>
-<td>@headless</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0%</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
 <div class="col-lg-6 col-md-12 sysenv-container">
 <div class="card">
 <div class="card-header"><p>System/Environment</p></div>
@@ -219,21 +192,21 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 0,
-failParent: 1,
+passParent: 1,
+failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 0,
-failChild: 1,
+passChild: 1,
+failChild: 0,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 0,
-failGrandChild: 2,
+passGrandChild: 6,
+failGrandChild: 0,
 warningGrandChild: 0,
-skipGrandChild: 5,
+skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
 };
@@ -247,39 +220,33 @@ eventsCount: 5,
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
-</ul>
-</li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
-<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@headless</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="fail" test-id="1"
+        <li class="test-item"  status="pass" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">Flight Booking on Ixigo</p>
             <p class="text-sm">
-              <span>12:09:50 PM</span> / <span>00:00:08:328</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>8:01:41 PM</span> / <span>00:00:30:291</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">Flight Booking on Ixigo</h5>
-<span class='badge badge-success'>03.09.2026 12:09:50 PM</span>
-<span class='badge badge-danger'>03.09.2026 12:09:59 PM</span>
-<span class='badge badge-default'>00:00:08:328</span>
+<h5 class="test-status text-pass">Flight Booking on Ixigo</h5>
+<span class='badge badge-success'>03.09.2026 8:01:41 PM</span>
+<span class='badge badge-danger'>03.09.2026 8:02:11 PM</span>
+<span class='badge badge-default'>00:00:30:291</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -292,89 +259,39 @@ eventsCount: 5,
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Search for a one-way flight</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Search for a one-way flight</div>
       </div>
     </div>
-        <div class="">
+        <div class="collapse">
           <div class="card-body">
-              <div class="step fail-bg" title="steps.LoginSteps.navigateToIxigo()">
+              <div class="step pass-bg" title="steps.LoginSteps.navigateToIxigo()">
                 <span>Given User is on the ixigo homepage</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=145.0.7632.160)
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [92db284752684ba755d6885f37e742ec, findElement {value=//button[contains(text(), 'Log in')], using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\budchane\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51117}, goog:processID: 7020, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51117/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 92db284752684ba755d6885f37e742ec
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
-	at POM_Pagess.LoginPage.click_login_signup_button(LoginPage.java:56)
-	at steps.LoginSteps.navigateToIxigo(LoginSteps.java:64)
-	at ✽.User is on the ixigo homepage(file:///C:/Users/budchane/Desktop/New%20folder/WP/Selenium/src/test/resources/features/feature.feature:4)
-</textarea>
-      
       </div>
               </div>
-              <div class="step skip-bg" title="steps.LoginSteps.user_enters_mob_no_mob_no_and_click_continue()">
+              <div class="step pass-bg" title="steps.LoginSteps.user_enters_mob_no_mob_no_and_click_continue()">
                 <span>When user enters mob_no <mob_no> and click continue</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="steps.LoginSteps.enterCities(java.lang.String,java.lang.String)">
-                <span>When User enters "Pune" as source and "Mumbai" as destination</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="steps.LoginSteps.performSearch()">
-                <span>And User clicks on the search button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="steps.LoginSteps.verifyResults()">
-                <span>Then Flight search results should be displayed</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="steps.LoginSteps.user_clicks_on_book_btn()">
-                <span>When user clicks on BookBtn</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step fail-bg" title="AFTER">
-                <span>TestSetup.Hooks.tearDown(io.cucumber.java.Scenario)</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchSessionException: invalid session id
-Build info: version: '4.40.0', revision: 'b3333f1'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [92db284752684ba755d6885f37e742ec, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\budchane\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51117}, goog:processID: 7020, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51117/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 92db284752684ba755d6885f37e742ec
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:682)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:390)
-	at TestSetup.Hooks.tearDown(Hooks.java:72)
-</textarea>
-      
+      </div>
+              </div>
+              <div class="step pass-bg" title="steps.LoginSteps.enterCities(java.lang.String,java.lang.String)">
+                <span>When User enters "Pune" as source and "Mumbai" as destination</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="steps.LoginSteps.performSearch()">
+                <span>And User clicks on the search button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="steps.LoginSteps.verifyResults()">
+                <span>Then Flight search results should be displayed</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="steps.LoginSteps.user_clicks_on_book_btn()">
+                <span>When user clicks on BookBtn</span>
+      <div>
       </div>
               </div>
           </div>
@@ -392,121 +309,7 @@ Session ID: 92db284752684ba755d6885f37e742ec
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view category-view attributes-view">
-<div class="test-list">
-<div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
-</div>
-<div class="test-list-wrapper scrollable">
-<ul class="test-list-item">
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>1</span>
-</span>
-<p class="name">@headless</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@headless</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>12:09:50 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='2'>Search for a one-way flight</a>
-<div class="">
-<span class="badge badge-default">Flight Booking on Ixigo.Search for a one-way flight</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="test-content scrollable">
-<div class="test-content-detail">
-<div class="detail-body"></div>
-</div>
-</div>
-</div><div class="test-wrapper row view exception-view attributes-view">
-<div class="test-list">
-<div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
-</div>
-<div class="test-list-wrapper scrollable">
-<ul class="test-list-item">
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>2</span>
-</span>
-<p class="name">org.openqa.selenium.NoSuchSessionException</p>
-<p class="duration text-sm">2 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>org.openqa.selenium.NoSuchSessionException</h4>
-<span status="fail" class='badge log badge-danger'>2 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>12:09:55 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='5'>Given User is on the ixigo homepage</a>
-<div class="">
-<span class="badge badge-default">Flight Booking on Ixigo.Search for a one-way flight.Given User is on the ixigo homepage</span>
-</div>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>12:09:59 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='11'>TestSetup.Hooks.tearDown(io.cucumber.java.Scenario)</a>
-<div class="">
-<span class="badge badge-default">Flight Booking on Ixigo.Search for a one-way flight.TestSetup.Hooks.tearDown(io.cucumber.java.Scenario)</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="test-content scrollable">
-<div class="test-content-detail">
-<div class="detail-body"></div>
-</div>
-</div>
-</div>        </div>
+        </div>
       </div>
     </div>
   </div>
