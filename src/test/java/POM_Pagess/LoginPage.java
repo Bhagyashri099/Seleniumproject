@@ -8,9 +8,11 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -23,6 +25,7 @@ public class LoginPage
 {
 	WebDriver driver;
 	WebDriverWait wait;
+	
 
 	// Locators
 	private final By LoginBtn= By.xpath("//button[contains(text(), 'Log in')]");
@@ -31,7 +34,7 @@ public class LoginPage
 
 	private final By fromField= By.xpath("//p[@data-testid='originId']//span[text()='From']");
 	private final By toField= By.xpath("//p[@data-testid='destinationId']//span[text()='To']");
-	By searchBtn = By.xpath("//button[contains(.,'Search')]");
+	private final By searchBtn = By.xpath("//button[contains(.,'Search')]");
 	private final By fromsearchbox=By.xpath("//input[@class='outline-none w-full bg-transparent placeholder:text-disabled pt-3 focus:caret-selection text-primary placeholder:opacity-0 focus:placeholder:opacity-100 font-medium text-lg !pt-5']");
 	private final By destsearchbox=By.xpath("(//div[.//label[normalize-space()='To']]//input)[2]");
 	private final By BookBtn=By.xpath("(//button[contains(text(), 'Book')])[1]");
@@ -45,6 +48,7 @@ public class LoginPage
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
 	}
 
 
@@ -53,7 +57,7 @@ public class LoginPage
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
 
-		//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(LoginBtn)));
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(LoginBtn)));
 		//driver.findElement(LoginBtn).click();
 
 	}
@@ -83,16 +87,26 @@ public class LoginPage
 
 
 	public void enterSource(String source) throws InterruptedException {
+		Actions actions = new Actions(driver);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(fromField));
 		WebElement el = wait.until(ExpectedConditions.elementToBeClickable(fromField));
 		el.click();
 
 		driver.findElement(fromsearchbox).sendKeys(source);
-		Thread.sleep(3000);
+		try {
+		    new WebDriverWait(driver, Duration.ofSeconds(5))
+		        .until(ExpectedConditions.presenceOfElementLocated(By.id("non-existent-id")));
+		} catch (TimeoutException e) {
+		    // Continue after 5 seconds
+		}
+		//actions.pause(Duration.ofSeconds(5));
+		//Thread.sleep(3000);
 
-		// Select the first matching suggestion
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[contains(@class,'Autocompleter_animate__')]//div[@role='listitem'])[1]"))).click();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		actions.pause(Duration.ofSeconds(5));
+		//Thread.sleep(2000);
 	}
 
 	public void enterDestination(String dest) throws InterruptedException {
@@ -148,7 +162,12 @@ public class LoginPage
 
 		//js.executeScript("window.scrollBy(300, 300)"); 
 		//driver.findElement(By.xpath("//input[@type='checkbox'][1]")).click();
-		Thread.sleep(3000);
+		try {
+		    new WebDriverWait(driver, Duration.ofSeconds(5))
+		        .until(ExpectedConditions.presenceOfElementLocated(By.id("non-existent-id")));
+		} catch (TimeoutException e) {
+		    // Continue after 5 seconds
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(ConfirmBtn));
 		driver.findElement(By.xpath("//button[contains(text(),'Confirm')]")).click();
 		//Thread.sleep(3000);

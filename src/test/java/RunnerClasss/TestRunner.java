@@ -18,7 +18,7 @@ tags = " not @ignore"
 	@AfterSuite
     public void sendEmail() {
         
-        EmailUtility.sendReportAfterExecution("test-output/SparkReport/Index.html");
+        EmailUtility.sendReportAfterExecution("test output\\PdfReport\\ExtentPdf.pdf");
     }
 
 }

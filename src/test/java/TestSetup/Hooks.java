@@ -31,7 +31,7 @@ public class Hooks
 	@BeforeSuite
     public void setupReport() {
         // 2. Initialize the reporter and the extent object
-        spark = new ExtentSparkReporter("test-output/SparkReport/Index.html");
+        spark = new ExtentSparkReporter("test output\\PdfReport\\ExtentPdf.pdf");
         extent = new ExtentReports();
         extent.attachReporter(spark);
     }
@@ -44,7 +44,7 @@ public class Hooks
 		boolean isHeadless = Authconfig.getHeadless() || scenario.getSourceTagNames().contains("@headless");
 		ChromeOptions options = new ChromeOptions();
 		if (isHeadless) {
-	        options.addArguments("--headless=new");
+	        options.addArguments("--headless");
 	        options.addArguments("--window-size=1920,1080");
 	        options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36");
 	    }
@@ -87,10 +87,10 @@ public class Hooks
 	@AfterSuite
     public void tearDownSuite() {
         if (extent != null) {
-            // 3. This will now work because 'extent' is recognized
+            
             extent.flush(); 
         }
-        EmailUtility.sendReportAfterExecution("test-output/SparkReport/Index.html");
+        EmailUtility.sendReportAfterExecution("test output\\PdfReport\\ExtentPdf.pdf");
     }
 	}
 	

@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-09T20:31:06 IST" name="Suite" finished-at="2026-03-09T20:32:29 IST" duration-ms="82987">
+  <suite started-at="2026-03-13T16:32:07 IST" name="Suite" finished-at="2026-03-13T16:33:34 IST" duration-ms="86433">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@5f6722d3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2026-03-09T20:31:06 IST" name="Test" finished-at="2026-03-09T20:32:29 IST" duration-ms="82987">
+    <test started-at="2026-03-13T16:32:07 IST" name="Test" finished-at="2026-03-13T16:33:34 IST" duration-ms="86433">
       <class name="RunnerClasss.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:RunnerClasss.TestRunner@5f6722d3]" started-at="2026-03-09T20:31:06 IST" name="setUpClass" finished-at="2026-03-09T20:31:07 IST" duration-ms="767" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:32:07 IST" name="setUpClass" finished-at="2026-03-13T16:32:08 IST" duration-ms="528" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@744f0e0b]]>
+                <![CDATA[org.testng.TestRunner@4b60ff1c]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@5f6722d3]" started-at="2026-03-09T20:31:07 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-09T20:32:26 IST" duration-ms="79380" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:32:08 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-13T16:32:54 IST" duration-ms="46333" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create multiple users and log results to Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["User Management API"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:32:54 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-13T16:33:16 IST" duration-ms="21649" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,29 +50,46 @@
               </value>
             </param>
           </params>
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:110)
-at org.testng.Assert.failNotEquals(Assert.java:1577)
-at org.testng.Assert.assertTrue(Assert.java:56)
-at org.testng.Assert.assertTrue(Assert.java:66)
-at steps.LoginSteps.verifyResults(LoginSteps.java:87)
-at ✽.Flight search results should be displayed(file:///C:/Users/budchane/Desktop/New%20folder/WP/Selenium/src/test/resources/features/feature.feature:8)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:RunnerClasss.TestRunner@5f6722d3]" started-at="2026-03-09T20:32:26 IST" name="tearDownClass" finished-at="2026-03-09T20:32:29 IST" duration-ms="2787" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:33:16 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-13T16:33:17 IST" duration-ms="853" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["404 Not Found - Missing Resource"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["API Error Status Code Validation"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:33:17 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2026-03-13T16:33:32 IST" duration-ms="15276" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Create multiple users and log results to Excel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["API Error Status Code Validation"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:33:32 IST" name="tearDownClass" finished-at="2026-03-13T16:33:34 IST" duration-ms="1749" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-        <test-method is-config="true" signature="sendEmail()[pri:0, instance:RunnerClasss.TestRunner@5f6722d3]" started-at="2026-03-09T20:32:29 IST" name="sendEmail" finished-at="2026-03-09T20:32:37 IST" duration-ms="8243" status="PASS">
+        <test-method is-config="true" signature="sendEmail()[pri:0, instance:RunnerClasss.TestRunner@6c67e137]" started-at="2026-03-13T16:33:34 IST" name="sendEmail" finished-at="2026-03-13T16:33:41 IST" duration-ms="6818" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendEmail -->

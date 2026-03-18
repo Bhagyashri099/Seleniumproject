@@ -12,7 +12,7 @@ public class EmailUtility {
             attachment.setPath(reportPath); 
             attachment.setDisposition(EmailAttachment.ATTACHMENT);
             attachment.setDescription("API Test Execution Report");
-            attachment.setName("ExtentReport.html");
+            attachment.setName("ExtentReport.pdf");
 
             MultiPartEmail email = new MultiPartEmail();
             email.setHostName("smtp.gmail.com");
