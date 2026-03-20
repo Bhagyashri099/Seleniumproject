@@ -62,8 +62,8 @@ public class LoginSteps
 			login.click_login_signup_button();
 			
 		}
-		@When("user enters mob_no <mob_no> and click continue")
-		public void user_enters_mob_no_mob_no_and_click_continue() throws IOException, InterruptedException {
+		@When("user enters mob_no from <rowID> and click continue")
+		public void user_enters_mob_no_from_row_id_and_click_continue() throws IOException, InterruptedException {
 			login.enter_username_mob_no();
 			login.click_continue_for_login();
 		}

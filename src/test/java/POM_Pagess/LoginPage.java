@@ -20,6 +20,7 @@ import org.testng.Assert;
 import DataSetup.ConfigReader;
 import DataSetup.ExcelReader;
 import TestSetup.Hooks;
+import jdk.internal.org.jline.utils.Log;
 
 public class LoginPage 
 {
@@ -120,6 +121,7 @@ public class LoginPage
 
 	public void clickSearch() {
 		driver.findElement(searchBtn).click();
+		Log.info("print logs: clicking on search button");
 	}
 
 
@@ -147,6 +149,7 @@ public class LoginPage
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		//js.executeScript("window.scrollBy(800, 900)"); 
+		Log.info("selecting free cancellation");;
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
 		WebElement radioBtn = driver.findElement(By.id("Free Cancellation-radio"));
