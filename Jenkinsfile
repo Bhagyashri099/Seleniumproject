@@ -51,27 +51,32 @@ pipeline {
                     double limit = env.PASS_THRESHOLD.toDouble()
 
                     if (actual < limit) {
-                        echo "REVERTING: Pass rate ${actual}% is below threshold ${limit}%."
-                        
-                        withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}", 
-                                         passwordVariable: 'GIT_PASSWORD', 
-                                         usernameVariable: 'GIT_USERNAME')]) {
-                            
-                            bat 'git config user.email "budchane24@gmail.com"'
-                            bat 'git config user.name "bhagyashri"'
-                            
-                            // Revert the commit
-                            bat "git revert --no-edit HEAD"
-                            
-                            // Push the revert
-                            bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
-                        }
-                        
-                        //  fail the build after the revert is done
-                        error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
-                    } else {
-                        echo "PASSED: Pass rate ${actual}% meets threshold."
-                    }
+        echo "REVERTING: Pass rate ${actual}% is below threshold ${limit}%."
+
+        withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}",
+          passwordVariable: 'GIT_PASSWORD',
+          usernameVariable: 'GIT_USERNAME')]) {
+
+          // IMPORTANT: this must be the same repo you want to push to
+          // e.g., env.REPO_URL = "github.com/Bhagyashri099/Seleniumproject.git"
+          bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} master"
+          bat "git checkout -B master FETCH_HEAD"
+          bat "git reset --hard FETCH_HEAD"
+
+          bat 'git config user.email "budchane24@gmail.com"'
+          bat 'git config user.name "bhagyashri"'
+
+          // Revert the commit that was built
+          bat "git revert --no-edit ${env.GIT_COMMIT}"
+
+          // Push the revert to master
+          bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
+        }
+
+        error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
+      } else {
+        echo "PASSED: Pass rate ${actual}% meets threshold."
+      }
                 }
             }
         }
