@@ -1,4 +1,4 @@
-Feature: Flight Bookin
+Feature: Flight Booking 
   @ignore
   Scenario Outline: Search for a one-way flight
     Given User is on the ixigo homepage

@@ -44,38 +44,29 @@ pipeline {
             }
         }
 
-        stage('Quality Gate & Revert') {
-            steps {
-                script {
-                    double actual = env.ACTUAL_PASS_PERCENT.toDouble()
-                    double limit = env.PASS_THRESHOLD.toDouble()
+post {
+        unstable {
+            script {
+                // This block runs ONLY if tests fail (Unstable status)
+                double actual = env.ACTUAL_PASS_PERCENT.toDouble()
+                double limit = env.PASS_THRESHOLD.toDouble()
 
-                    if (actual < limit) {
-                        echo "FAILED: Pass rate ${actual}% is below threshold ${limit}%."
+                if (actual < limit) {
+                    echo "REVERTING: Pass rate ${actual}% is below threshold ${limit}%."
+                    
+                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}", 
+                                     passwordVariable: 'GIT_PASSWORD', 
+                                     usernameVariable: 'GIT_USERNAME')]) {
                         
-                        withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}", 
-                                         passwordVariable: 'GIT_PASSWORD', 
-                                         usernameVariable: 'GIT_USERNAME')]) {
-                            
-                            // Essential Git config for the commit to work
-                            bat 'git config user.email "budchane24@gmail.com"'
-                            bat 'git config user.name "bhagyashri"'
-                            
-                            // Perform revert
-                            bat "git revert --no-edit HEAD"
-                            
-                            // Use %Variables% to inject your Admin credentials into the push
-                            bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD"
-                        }
-                        
-                        error("Build Reverted: Pass rate ${actual}% was too low.")
-                    } else {
-                        echo "PASSED: Pass rate ${actual}% meets threshold."
+                        bat 'git config user.email "budchane24@gmail.com"'
+                        bat 'git config user.name "bhagyashri"'
+                        bat "git revert --no-edit HEAD"
+                        bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD"
                     }
                 }
             }
         }
-
+    }
         stage('Deliver') {
             steps {
                 // 3. Pass information back to the build tool (Maven)
