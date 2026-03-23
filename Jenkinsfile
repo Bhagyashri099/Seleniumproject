@@ -59,25 +59,22 @@ pipeline {
                                                  usernameVariable: 'GIT_USERNAME')]) {
                     
                     // Clean workspace and ensure we are on a fresh state
-                    bat 'git reset --hard'
-                    bat 'git clean -fdx'
+// 1. Clean the workspace
+    bat 'git reset --hard'
+    bat 'git clean -fdx'
 
-                    // Use the specific repo URL and ensure master is up to date
-                    bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} master"
-                    bat "git checkout master"
-                    bat "git pull https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} master"
+    // 2. Fetch the latest from remote
+    String remoteUrl = "https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')}"
+    bat "git fetch ${remoteUrl} master"
 
-                    // Identity is required for the revert commit
-                    bat 'git config user.email "budchane24@gmail.com"'
-                    bat 'git config user.name "bhagyashri"'
+    // 3. FORCE RESET to the commit BEFORE the one that failed
+    // ${env.GIT_COMMIT}^ means "the parent of the current commit"
+    echo "Resetting to parent of ${env.GIT_COMMIT}"
+    bat "git reset --hard ${env.GIT_COMMIT}^"
 
-                    // Revert the specific commit that triggered this build
-                    // --no-edit prevents the interactive editor from popping up
-                    bat "git revert --no-edit ${env.GIT_COMMIT}"
-
-                    // Push the revert back to the remote master branch
-                    bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} HEAD:master"
-                }
+    // 4. FORCE PUSH to master to effectively remove the bad commit
+    bat "git push --force ${remoteUrl} HEAD:master"
+}
 
                 error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
             } else {
