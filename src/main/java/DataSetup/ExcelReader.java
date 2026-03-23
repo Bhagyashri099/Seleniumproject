@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader
 {
-	// Reads a sheet into a list of maps: each row becomes {header -> cellValue}
+	// Reads a sheet into a list of maps
     public static List<Map<String, String>> readSheet(String resourcePath, String sheetName) {
         try (InputStream in = ExcelReader.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (in == null) throw new IllegalArgumentException("Excel not found on classpath: " + resourcePath);

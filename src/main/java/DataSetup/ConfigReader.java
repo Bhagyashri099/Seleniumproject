@@ -19,7 +19,7 @@ public class ConfigReader {
     public static void loadProperties() {
         try {
             properties = new Properties();
-            // Use System.getProperty("user.dir") to avoid path errors
+            // System.getProperty("user.dir") to avoid path errors
             String configPath = System.getProperty("user.dir") + "/src/test/resources/config.properties";
             FileInputStream fis = new FileInputStream(configPath);
             properties.load(fis);
@@ -29,7 +29,7 @@ public class ConfigReader {
     }
 
    
-    // STEP 2: Simplify these methods (no extra checks needed now)
+    // 
     public String getExecutionEnv() {
         return properties.getProperty("execution_env");
     }
@@ -59,7 +59,7 @@ public class ConfigReader {
     
     public boolean getHeadless() {
         String headless = properties.getProperty("headless");
-        return Boolean.parseBoolean(headless); // Returns true if the string is "true"
+        return Boolean.parseBoolean(headless); // Returns true 
     }
 	    }
 	    
