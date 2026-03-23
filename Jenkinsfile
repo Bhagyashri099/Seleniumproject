@@ -7,7 +7,7 @@ pipeline {
     environment {
         PASS_THRESHOLD = 90.0
         GIT_CREDS = 'Admin'
-        REPO_URL = 'github.com/Bhagyashri099/TestingAuto.git'
+        REPO_URL = 'github.com/Bhagyashri099/Seleniumproject.git'
     }
 
     
@@ -71,7 +71,7 @@ pipeline {
     bat "git reset --hard ${env.GIT_COMMIT}^"
 
     // 4. remove the bad commit
-    bat "git push --force ${https://github.com/Bhagyashri099/Seleniumproject.git} HEAD:master"
+    bat "git push --force ${remoteUrl} HEAD:master"
 }
 
                 error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
