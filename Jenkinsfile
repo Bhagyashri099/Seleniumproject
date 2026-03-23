@@ -47,7 +47,7 @@ pipeline {
         stage('Quality Gate & Revert') {
     steps {
         script {
-            // Use doubleValue() or toDouble() safely
+            
             double actual = env.ACTUAL_PASS_PERCENT.toDouble()
             double limit = env.PASS_THRESHOLD.toDouble()
 
@@ -58,21 +58,19 @@ pipeline {
                                                  passwordVariable: 'GIT_PASSWORD', 
                                                  usernameVariable: 'GIT_USERNAME')]) {
                     
-                    // Clean workspace and ensure we are on a fresh state
-// 1. Clean the workspace
-    bat 'git reset --hard'
-    bat 'git clean -fdx'
+                    
+                  // 1. Clean the workspace
+              bat 'git reset --hard'
+             bat 'git clean -fdx'
 
-    // 2. Fetch the latest from remote
-    String remoteUrl = "https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')}"
-    bat "git fetch ${remoteUrl} master"
+         // 2. Fetch the latest from remote
+           String remoteUrl = "https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')}"
+           bat "git fetch ${remoteUrl} master"
 
-    // 3. FORCE RESET to the commit BEFORE the one that failed
-    // ${env.GIT_COMMIT}^ means "the parent of the current commit"
     echo "Resetting to parent of ${env.GIT_COMMIT}"
     bat "git reset --hard ${env.GIT_COMMIT}^"
 
-    // 4. FORCE PUSH to master to effectively remove the bad commit
+    // 4. remove the bad commit
     bat "git push --force ${remoteUrl} HEAD:master"
 }
 
@@ -87,7 +85,7 @@ pipeline {
         stage('Deliver') {
             steps {
                 bat "mvn help:evaluate -Dexpression=project.version -DtestRate=${env.ACTUAL_PASS_PERCENT}"
-                bat 'jenkins\\scripts\\delivery.bat'
+            
             }
         }
     }

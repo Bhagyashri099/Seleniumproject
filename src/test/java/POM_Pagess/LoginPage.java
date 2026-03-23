@@ -72,7 +72,7 @@ public class LoginPage
 		for (Map<String, String> col : cols) {
 			String mob_no = col.get("mob_no");
 			//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-			System.out.println(mob_no);
+			//System.out.println(mob_no);
 			//driver.findElement(MobNo).sendKeys(mob_no);
 		}
 	}

@@ -116,7 +116,7 @@ public class LoginSteps
             stripper.setEndPage(i);
             String pageText = stripper.getText(document);
            
-            // logic to compare pageText with Excel row 'i'
+            // compare pageText with Excel row
         }
    }
     @Then("all text, font types, and colors should match the test data sheet")
@@ -134,7 +134,7 @@ public class LoginSteps
             // It "pumps" the data into variables
             String fullPageText = stripper.getText(document); 
 
-            // 2. Now the variable is no longer empty
+            // 
             String actualFont = stripper.getLastFontName();
             
             String actualColor = stripper.getLastColor();
@@ -167,7 +167,7 @@ public class LoginSteps
     
     @Given("I have the Excel sheet ready at row {string}")
     public void i_have_the_excel_sheet_ready_at_row(String rowNum) throws IOException {
-        // Loads the data from Excel file via PostRequest page class
+        
         apiLogic.getTestData(); 
     }
     //
