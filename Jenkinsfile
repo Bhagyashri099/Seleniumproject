@@ -57,21 +57,24 @@ pipeline {
           passwordVariable: 'GIT_PASSWORD',
           usernameVariable: 'GIT_USERNAME')]) {
 
-          // IMPORTANT: this must be the same repo you want to push to
-          // e.g., env.REPO_URL = "github.com/Bhagyashri099/Seleniumproject.git"
-          bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} master"
-          bat "git checkout -B master FETCH_HEAD"
-          bat "git reset --hard FETCH_HEAD"
+          bat 'git reset --hard'
+  bat 'git clean -fdx'
 
-          bat 'git config user.email "budchane24@gmail.com"'
-          bat 'git config user.name "bhagyashri"'
+  // IMPORTANT: use the SAME repo you checked out, otherwise revert may not apply
+  // (Your job checks out Seleniumproject.git but your fetch shows TestingAuto.git)
+  bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} master"
+  bat "git checkout -B master FETCH_HEAD"
 
-          // Revert the commit that was built
-          bat "git revert --no-edit ${env.GIT_COMMIT}"
+  bat 'git config user.email "budchane24@gmail.com"'
+  bat 'git config user.name "bhagyashri"'
 
-          // Push the revert to master
-          bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
-        }
+  // Revert the commit that was built
+  bat "git revert --no-edit ${env.GIT_COMMIT}"
+
+  // Push revert to master
+  bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
+  }
+  
 
         error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
       } else {
