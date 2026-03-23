@@ -45,44 +45,47 @@ pipeline {
         }
 
         stage('Quality Gate & Revert') {
-            steps {
-                script {
-                    double actual = env.ACTUAL_PASS_PERCENT.toDouble()
-                    double limit = env.PASS_THRESHOLD.toDouble()
+    steps {
+        script {
+            // Use doubleValue() or toDouble() safely
+            double actual = env.ACTUAL_PASS_PERCENT.toDouble()
+            double limit = env.PASS_THRESHOLD.toDouble()
 
-                    if (actual < limit) {
-        echo "REVERTING: Pass rate ${actual}% is below threshold ${limit}%."
+            if (actual < limit) {
+                echo "REVERTING: Pass rate ${actual}% is below threshold ${limit}%."
 
-        withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}",
-          passwordVariable: 'GIT_PASSWORD',
-          usernameVariable: 'GIT_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: "${GIT_CREDS}", 
+                                                 passwordVariable: 'GIT_PASSWORD', 
+                                                 usernameVariable: 'GIT_USERNAME')]) {
+                    
+                    // Clean workspace and ensure we are on a fresh state
+                    bat 'git reset --hard'
+                    bat 'git clean -fdx'
 
-          bat 'git reset --hard'
-  bat 'git clean -fdx'
+                    // Use the specific repo URL and ensure master is up to date
+                    bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} master"
+                    bat "git checkout master"
+                    bat "git pull https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} master"
 
-  // IMPORTANT: use the SAME repo you checked out, otherwise revert may not apply
-  // (Your job checks out Seleniumproject.git but your fetch shows TestingAuto.git)
-  bat "git fetch https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} master"
-  bat "git checkout -B master FETCH_HEAD"
+                    // Identity is required for the revert commit
+                    bat 'git config user.email "budchane24@gmail.com"'
+                    bat 'git config user.name "bhagyashri"'
 
-  bat 'git config user.email "budchane24@gmail.com"'
-  bat 'git config user.name "bhagyashri"'
+                    // Revert the specific commit that triggered this build
+                    // --no-edit prevents the interactive editor from popping up
+                    bat "git revert --no-edit ${env.GIT_COMMIT}"
 
-  // Revert the commit that was built
-  bat "git revert --no-edit ${env.GIT_COMMIT}"
-
-  // Push revert to master
-  bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
-  }
-  
-
-        error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
-      } else {
-        echo "PASSED: Pass rate ${actual}% meets threshold."
-      }
+                    // Push the revert back to the remote master branch
+                    bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL.replace('https://', '')} HEAD:master"
                 }
+
+                error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
+            } else {
+                echo "PASSED: Pass rate ${actual}% meets threshold."
             }
         }
+    }
+}
 
         stage('Deliver') {
             steps {
