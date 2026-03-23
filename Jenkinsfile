@@ -60,7 +60,7 @@ pipeline {
                     
                     
                   // 1. Clean the workspace
-              bat 'git reset --hard'
+              bat 'git reset --hard HEAD~1'
              bat 'git clean -fdx'
 
          // 2. Fetch the latest from remote
