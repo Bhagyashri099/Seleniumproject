@@ -64,10 +64,10 @@ pipeline {
                             bat "git revert --no-edit HEAD"
                             
                             // Push the revert
-                            bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD"
+                            bat "git push https://%GIT_USERNAME%:%GIT_PASSWORD%@${env.REPO_URL} HEAD:refs/heads/master"
                         }
                         
-                        // NOW we fail the build after the revert is done
+                        //  fail the build after the revert is done
                         error("Build Reverted: Pass rate ${actual}% was too low (Threshold: ${limit}%).")
                     } else {
                         echo "PASSED: Pass rate ${actual}% meets threshold."
