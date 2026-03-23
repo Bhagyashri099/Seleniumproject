@@ -10,11 +10,7 @@ pipeline {
         REPO_URL = 'github.com/Bhagyashri099/TestingAuto.git'
     }
 
-    options {
-        //prevent 'Test' from becoming unstable
-        skipStagesAfterUnstable()
-    }
-
+    
     stages {
         stage('Build') {
             steps {

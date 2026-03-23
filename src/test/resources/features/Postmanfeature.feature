@@ -1,6 +1,6 @@
 Feature: User Management API
     
-  @skip_setup1
+ @ignore @skip_setup1
   Scenario Outline: Create multiple users and log results to Excel
     Given I have the Excel sheet ready at row "<rowNum>"
     When I send a POST request using data from Excel row "<rowNum>"
