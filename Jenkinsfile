@@ -11,7 +11,7 @@ pipeline {
     }
 
     options {
-        // You can keep this now, because we will prevent 'Test' from becoming unstable
+        //prevent 'Test' from becoming unstable
         skipStagesAfterUnstable()
     }
 
@@ -29,19 +29,19 @@ pipeline {
             post {
                 always {
                     script {
-                        // The 'junit' step usually marks build UNSTABLE. 
-                        // We use it here just to collect data.
+                        // 1. Record the results
                         def testResults = junit 'target/surefire-reports/*.xml'
                         
+                        // 2. Calculate the percentage
                         double total = testResults.totalCount
                         double passed = testResults.passCount
                         double percent = (total > 0) ? (passed / total) * 100 : 0
                         
                         env.ACTUAL_PASS_PERCENT = percent
                         echo "Captured Pass Percentage: ${env.ACTUAL_PASS_PERCENT}%"
-                        
-                        // IMPORTANT: Force the build to stay "SUCCESSFUL" for a moment 
-                        // so the next stage isn't skipped.
+
+                        // 3. FORCE SUCCESS (This is the missing piece)
+                        // This prevents 'skipStagesAfterUnstable' from triggering yet.
                         currentBuild.result = 'SUCCESS'
                     }
                 }
